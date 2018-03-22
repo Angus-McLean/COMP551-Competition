@@ -81,7 +81,7 @@ def scaledStretch(img, targetShape):
     scale0 = float(targetShape[0])/img.shape[0]
     scale1 = float(targetShape[1])/img.shape[1]
 
-    scaledImg = resizeImage(img, int(min(scale0, scale1)))
+    scaledImg = resizeImage(img, min(scale0, scale1))
 
     imgFinal = np.zeros(targetShape)
     imgFinalCenter = getImgCenter(imgFinal, scaledImg.shape)
@@ -93,7 +93,7 @@ def roundImageBin(img, window_size):
     return rndImgBin
 
 def resizeImage(img, factor):
-    tmpImg = resize(img, (img.shape[0] * factor, img.shape[1] * factor))
+    tmpImg = resize(img, (int(img.shape[0] * factor), int(img.shape[1] * factor)))
     return np.floor_divide(tmpImg, 1)
 
 def displayImgs(imgs, titles=[], n_cols=4):
